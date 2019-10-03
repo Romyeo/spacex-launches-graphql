@@ -1,0 +1,27 @@
+.button {
+  background-color: #17141D;
+  border: none;
+  border-radius: 1em;
+  box-shadow: 0 6px 6px rgba(0,0,0,0.23);
+  color: #FFF;
+  cursor: pointer;
+  padding: 1em 2em;
+  transition: box-shadow 100ms ease-out;
+}
+
+.button:hover,
+.button:active {
+  outline: none;
+}
+
+.button:hover {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.button:active {
+  box-shadow: 0 2px 2px rgba(0,0,0,0.23);
+}
+
+button::-moz-focus-inner {
+  border: 0;
+}

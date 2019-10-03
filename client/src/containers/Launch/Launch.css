@@ -1,0 +1,56 @@
+p, h1 {
+  color: #FFF;
+}
+
+.details {
+  margin-bottom: 2em;
+}
+
+.footer {
+  margin: 1em 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9em;
+}
+
+.rocket-container,
+.rocket-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.rocket-container img {
+  height: 2em;
+  margin-right: .75em;
+  margin-left: -.5em;
+}
+
+.rocket-container .rocket-info .rocket-footer p,
+.rocket-container .rocket-info h3 {
+  margin: 0;
+}
+
+.rocket-container .rocket-info .rocket-footer p {
+  font-size: 0.8em;
+  color: rgba(255, 255, 255, 0.5)
+}
+
+.rocket-info {
+  flex: 1;
+}
+
+.rocket-footer {
+  justify-content: space-between;
+}
+
+.options-container {
+  display: flex;
+  justify-content: flex-end;
+}
+
