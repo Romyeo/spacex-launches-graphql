@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+    "start": "node ./server/server.js",
     "start:server": "nodemon ./server/server.js",
     "start:client": "yarn --cwd client start",
     "dev": "concurrently npm:start:*"
