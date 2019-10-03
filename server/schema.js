@@ -9,6 +9,19 @@ const {
   GraphQLSchema
 } = require('graphql');
 
+// Utility
+const sortAsc = (a, b) => {
+  if (a < b) return -1;
+  if (a > b) return 1;
+  return 0;
+};
+
+const sortDesc = (a, b) => {
+  if (a < b) return 1;
+  if (a > b) return -1;
+  return 0;
+};
+
 // Launch type
 const LaunchType = new GraphQLObjectType({
   name: 'Launch',
@@ -17,6 +30,7 @@ const LaunchType = new GraphQLObjectType({
     flight_number: { type: GraphQLInt },
     mission_name: { type: GraphQLString },
     launch_date_local: { type: GraphQLString },
+    launch_date_unix: { type: GraphQLString },
     launch_date_utc: { type: GraphQLString },
     launch_success: { type: GraphQLBoolean },
     launch_year: { type: GraphQLString },
@@ -40,11 +54,32 @@ const RootQuery = new GraphQLObjectType({
   fields: {
     launches: {
       type: GraphQLList(LaunchType),
-      resolve: async () => {
+      args: {
+        sortBy: { type: GraphQLString },
+        sort: { type: GraphQLString }
+      },
+      resolve: async (_, args) => {
         const response = await axios.get(
           'https://api.spacexdata.com/v3/launches'
         );
-        return response.data;
+
+        if (!args || !args.sortBy || !args.sort) return response.data;
+
+        const { sortBy, sort } = args;
+
+        return response.data.sort((a, b) => {
+          const valueA = a[sortBy];
+          const valueB = b[sortBy];
+
+          switch (sort) {
+            case 'asc':
+              return sortAsc(valueA, valueB);
+            case 'desc':
+              return sortDesc(valueA, valueB);
+            default:
+              return 0;
+          }
+        });
       }
     },
     launch: {
